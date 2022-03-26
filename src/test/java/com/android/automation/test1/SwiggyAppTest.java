@@ -1,8 +1,5 @@
 package com.android.automation.test1;
 
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -10,9 +7,10 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.AssertJUnit;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.android.automation.pagefactory.BasePage;
@@ -38,7 +36,7 @@ public class SwiggyAppTest {
 	static MenuPage menuPage;
 	static SignUpPage signupPage;
 
-	@BeforeTest
+	@BeforeMethod
 	public static void setup() throws InterruptedException {
 
 		try {
@@ -66,8 +64,7 @@ public class SwiggyAppTest {
 			capabilties.setCapability("appActivity", appActivity);
 
 			driver = new AndroidDriver<AndroidElement>(URL, capabilties);
-			wait = new WebDriverWait(driver, 5000);
-			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+			wait = new WebDriverWait(driver, 15000);
 			System.out.println(driver.getSessionId());
 
 			base = new BasePage(driver, wait);
@@ -85,7 +82,7 @@ public class SwiggyAppTest {
 
 	}
 
-	@AfterTest
+	@AfterClass
 	public void tearDown() {
 		driver.closeApp();
 	}
@@ -93,14 +90,13 @@ public class SwiggyAppTest {
 	@Test
 	public void LocateMe_InvalidLocation_tc1() throws InterruptedException{
 		System.out.println("Location check");
+		Thread.sleep(1000);
 		mainPage.clickSetDeliveryLocation();
 		base.allowAccessLocation();
-		deliveryPage.clickChangeLocation();
 		deliveryPage.clickLocateMe();
 		AssertJUnit.assertEquals(deliveryPage.getLocation(), "Mountain View");
 		deliveryPage.clickConfirmLocation();
 		AssertJUnit.assertEquals(deliveryPage.getInvalidPageTitle(), "We are not here yet!");
-		deliveryPage.clickEditLocation();
 		Thread.sleep(2000);
 		
 	}
@@ -108,6 +104,7 @@ public class SwiggyAppTest {
 	@Test
 	public void Signup_Invalid_phone_number_tc2() throws InterruptedException{
 		System.out.println("Invalid phone number check");
+		Thread.sleep(1000);
 		deliveryPage.clickLoginBtn();
 		base.clickPhoneNoneAbove();
 		signupPage.sendMobileNumberTextField("123");
@@ -118,7 +115,7 @@ public class SwiggyAppTest {
 		signupPage.clearMobileNumberTextField();
 		signupPage.sendMobileNumberTextField("1234567890");
 		AssertJUnit.assertEquals(signupPage.continueBtnCheck(), true);
-		//can continue to check if have valid number but I do not own a Indian number 
+		//can continue to check if have valid number but I do not own a India number 
 	}
 	
 
@@ -127,6 +124,7 @@ public class SwiggyAppTest {
 
 		System.out.println("Check able to check checkbox and radio");
 		System.out.println("Check able to add item");
+		Thread.sleep(1000);
 
 		// Setting location
 		mainPage.clickSetDeliveryLocation();
@@ -139,15 +137,20 @@ public class SwiggyAppTest {
 		// Searching
 		mainPage.clickBtmSearchBtn();
 		searchPage.searchTextBox("Pizza");
+		Thread.sleep(1000);
 		base.scrollToElement("Domino's Pizza");
+		Thread.sleep(1000);
 		searchPage.clickSearchBarResults("Domino's Pizza");
+		Thread.sleep(1000);
 		searchPage.clickResults("Domino's Pizza");
 		base.tapXY(900, 268);
 
 		// Adding
-		Thread.sleep(5000);
+		Thread.sleep(1000);
 		base.scrollToElement("Farmhouse");
+		Thread.sleep(3000);
 		menuPage.addToCart("Farmhouse");
+		Thread.sleep(3000);
 		menuPage.choiceRadioBtn(3);
 		menuPage.clickContinueBtn();
 		menuPage.choiceRadioBtn(1);

@@ -50,7 +50,7 @@ public class BasePage {
 		action.tap(PointOption.point(x,y)).perform();
 	}
 	
-	public void swipe(int fromX,int fromY,int toX,int toY) {
+	public void swipe(int fromX,int fromY,int toX,int toY) throws InterruptedException {
 		 @SuppressWarnings("rawtypes")
 		TouchAction action = new TouchAction(driver);
 		 action.press(PointOption.point(fromX,fromY))
@@ -58,6 +58,7 @@ public class BasePage {
 		 .moveTo(PointOption.point(toX, toY))
 		 .release()
 		 .perform();
+		 Thread.sleep(500);
 		 }
 	
 	public void scrollToElement(String expectedView) throws InterruptedException {
@@ -73,7 +74,7 @@ public class BasePage {
 		}
 		
 		if(!listViewsText.contains(expectedView)) {
-			swipe(632,1514,632,124);
+			swipe(632,1514,632,50);
 			Thread.sleep(200);
 			found = false;
 		}else {
