@@ -74,7 +74,7 @@ public class BasePage {
 		}
 		
 		if(!listViewsText.contains(expectedView)) {
-			swipe(632,1000,632,50);
+			swipe(632,1000,632,250);
 			Thread.sleep(200);
 			found = false;
 		}else {

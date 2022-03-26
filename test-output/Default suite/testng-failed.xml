@@ -5,8 +5,8 @@
     <classes>
       <class name="com.android.automation.test1.SwiggyAppTest">
         <methods>
-          <include name="LocateMe_InvalidLocation_tc1"/>
           <include name="setup"/>
+          <include name="Checkbox_Radio__Adding_Item_tc3"/>
           <include name="tearDown"/>
         </methods>
       </class> <!-- com.android.automation.test1.SwiggyAppTest -->

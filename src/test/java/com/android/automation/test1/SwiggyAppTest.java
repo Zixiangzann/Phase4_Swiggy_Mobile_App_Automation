@@ -87,38 +87,8 @@ public class SwiggyAppTest {
 		driver.closeApp();
 	}
 	
-	@Test
-	public void LocateMe_InvalidLocation_tc1() throws InterruptedException{
-		System.out.println("Location check");
-		mainPage.clickSetDeliveryLocation();
-		base.allowAccessLocation();
-		deliveryPage.clickLocateMe();
-		AssertJUnit.assertEquals(deliveryPage.getLocation(), "Mountain View");
-		deliveryPage.clickConfirmLocation();
-		AssertJUnit.assertEquals(deliveryPage.getInvalidPageTitle(), "We are not here yet!");
-		Thread.sleep(2000);
-		
-	}
-	
-	@Test
-	public void Signup_Invalid_phone_number_tc2() throws InterruptedException{
-		System.out.println("Invalid phone number check");
-		deliveryPage.clickLoginBtn();
-		base.clickPhoneNoneAbove();
-		signupPage.sendMobileNumberTextField("123");
-		AssertJUnit.assertEquals(signupPage.continueBtnCheck(), false);
-		signupPage.clearMobileNumberTextField();
-		signupPage.sendMobileNumberTextField("12345678");
-		AssertJUnit.assertEquals(signupPage.continueBtnCheck(), false);
-		signupPage.clearMobileNumberTextField();
-		signupPage.sendMobileNumberTextField("1234567890");
-		AssertJUnit.assertEquals(signupPage.continueBtnCheck(), true);
-		//can continue to check if have valid number but I do not own a India number 
-	}
-	
-
-	@Test
-	public void Checkbox_Radio__Adding_Item_tc3() throws InterruptedException {
+	@Test(priority=0)
+	public void Checkbox_Radio__Adding_Item_tc1() throws InterruptedException {
 
 		System.out.println("Check able to check checkbox and radio");
 		System.out.println("Check able to add item");
@@ -168,5 +138,37 @@ public class SwiggyAppTest {
 		System.out.println("Price: " + menuPage.getPrice());
 
 	}
+	
+	@Test(priority=1)
+	public void Signup_Invalid_phone_number_tc2() throws InterruptedException{
+		System.out.println("Invalid phone number check");
+		deliveryPage.clickLoginBtn();
+		base.clickPhoneNoneAbove();
+		signupPage.sendMobileNumberTextField("123");
+		AssertJUnit.assertEquals(signupPage.continueBtnCheck(), false);
+		signupPage.clearMobileNumberTextField();
+		signupPage.sendMobileNumberTextField("12345678");
+		AssertJUnit.assertEquals(signupPage.continueBtnCheck(), false);
+		signupPage.clearMobileNumberTextField();
+		signupPage.sendMobileNumberTextField("1234567890");
+		AssertJUnit.assertEquals(signupPage.continueBtnCheck(), true);
+		//can continue to check if have valid number but I do not own a India number 
+	}
+	
+	@Test(priority=2)
+	public void LocateMe_InvalidLocation_tc3() throws InterruptedException{
+		System.out.println("Location check");
+		mainPage.clickSetDeliveryLocation();
+		base.allowAccessLocation();
+		deliveryPage.clickLocateMe();
+		AssertJUnit.assertEquals(deliveryPage.getLocation(), "Mountain View");
+		deliveryPage.clickConfirmLocation();
+		AssertJUnit.assertEquals(deliveryPage.getInvalidPageTitle(), "We are not here yet!");
+		Thread.sleep(2000);
+		
+	}
+	
+
+	
 
 }
