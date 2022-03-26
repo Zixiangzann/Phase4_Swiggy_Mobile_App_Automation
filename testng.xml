@@ -7,6 +7,8 @@
         <methods>
         <include name="LocateMe_InvalidLocation_tc1" />
         <include name="Signup_Invalid_phone_number_tc2" />
+      </methods>
+        <methods>
         <include name="Checkbox_Radio__Adding_Item_tc3" />
       </methods>
       </class>

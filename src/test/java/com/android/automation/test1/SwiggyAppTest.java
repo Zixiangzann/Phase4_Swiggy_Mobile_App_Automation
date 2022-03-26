@@ -82,15 +82,14 @@ public class SwiggyAppTest {
 
 	}
 
-	@AfterClass
-	public void tearDown() {
+	@AfterMethod
+	public void tearDown() throws InterruptedException {
 		driver.closeApp();
 	}
 	
 	@Test
 	public void LocateMe_InvalidLocation_tc1() throws InterruptedException{
 		System.out.println("Location check");
-		Thread.sleep(1000);
 		mainPage.clickSetDeliveryLocation();
 		base.allowAccessLocation();
 		deliveryPage.clickLocateMe();
@@ -104,7 +103,6 @@ public class SwiggyAppTest {
 	@Test
 	public void Signup_Invalid_phone_number_tc2() throws InterruptedException{
 		System.out.println("Invalid phone number check");
-		Thread.sleep(1000);
 		deliveryPage.clickLoginBtn();
 		base.clickPhoneNoneAbove();
 		signupPage.sendMobileNumberTextField("123");
@@ -124,7 +122,6 @@ public class SwiggyAppTest {
 
 		System.out.println("Check able to check checkbox and radio");
 		System.out.println("Check able to add item");
-		Thread.sleep(1000);
 
 		// Setting location
 		mainPage.clickSetDeliveryLocation();
@@ -148,9 +145,9 @@ public class SwiggyAppTest {
 		// Adding
 		Thread.sleep(1000);
 		base.scrollToElement("Farmhouse");
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		menuPage.addToCart("Farmhouse");
-		Thread.sleep(3000);
+		Thread.sleep(10000);
 		menuPage.choiceRadioBtn(3);
 		menuPage.clickContinueBtn();
 		menuPage.choiceRadioBtn(1);

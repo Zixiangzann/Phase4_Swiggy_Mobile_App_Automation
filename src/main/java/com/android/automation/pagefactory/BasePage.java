@@ -54,7 +54,7 @@ public class BasePage {
 		 @SuppressWarnings("rawtypes")
 		TouchAction action = new TouchAction(driver);
 		 action.press(PointOption.point(fromX,fromY))
-		 .waitAction(new WaitOptions().withDuration(Duration.ofMillis(3000))) 
+		 .waitAction(new WaitOptions().withDuration(Duration.ofMillis(500))) 
 		 .moveTo(PointOption.point(toX, toY))
 		 .release()
 		 .perform();
@@ -74,7 +74,7 @@ public class BasePage {
 		}
 		
 		if(!listViewsText.contains(expectedView)) {
-			swipe(632,1514,632,50);
+			swipe(632,1000,632,50);
 			Thread.sleep(200);
 			found = false;
 		}else {

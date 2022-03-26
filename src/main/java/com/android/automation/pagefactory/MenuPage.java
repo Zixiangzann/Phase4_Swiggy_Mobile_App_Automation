@@ -54,6 +54,12 @@ public class MenuPage {
 	}
 	
 	public void addToCart(String whatToAdd) {
+		
+		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//android.widget.TextView[@text='"+whatToAdd+"']"
+				+ "/parent::android.view.ViewGroup"
+				+ "/parent::android.widget.LinearLayout"
+				+ "//following-sibling::android.widget.FrameLayout[2]"))));
+		
 		driver.findElement(By.xpath("//android.widget.TextView[@text='"+whatToAdd+"']"
 				+ "/parent::android.view.ViewGroup"
 				+ "/parent::android.widget.LinearLayout"
@@ -61,7 +67,6 @@ public class MenuPage {
 	}
 	
 	public void choiceRadioBtn(int num) {
-		wait.until(ExpectedConditions.elementToBeClickable(choiceRadioBtn.get(num)));
 		choiceRadioBtn.get(num).click();
 	}
 	
@@ -76,7 +81,6 @@ public class MenuPage {
 	}
 	
 	public void addOnCheckBox(int num) {
-		wait.until(ExpectedConditions.elementToBeClickable(addOnCheckBox.get(num)));
 		addOnCheckBox.get(num).click();
 	}
 	
